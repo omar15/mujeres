@@ -1,0 +1,15 @@
+label.error,label.valid{
+    display: block;
+    margin: 0 0 10px;
+    width: 75%;
+}
+
+label.error {
+    background-color: #FFBABA;
+    color: #D8000C;
+}
+
+label.valid {
+    background-color: #DFF2BF;
+    color: #4F8A10;
+}   

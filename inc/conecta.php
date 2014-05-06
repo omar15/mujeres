@@ -1,0 +1,51 @@
+<?php
+
+    // Usar este en producción, no envia errores
+	//error_reporting(0); 
+	
+	//Uso de reporte de errores anteriores
+	//error_reporting(E_ERROR | E_WARNING | E_PARSE | E_USER_ERROR);
+	
+	//Uso de reporte de errores más estricto
+	error_reporting(E_ALL ^ E_STRICT);
+	
+	//comentar la siguiente linea en producción
+	ini_set('display_errors', 'On'); 
+	
+	//incluimos la clase MyqliDb por que es externo a la clase 
+    include('libs/MysqliDb.php');
+    //hacemos una instancia ala clase MysqliDb en la variable $db
+    $db = new MysqliDb('localhost', 'root', '', 'padron_unico');
+	//$db = new MysqliDb('localhost', 'root', 'difJalisc0', 'padron_unico');
+    //$db = new MysqliDb('localhost', 'wronks_edgar', 'edgar', 'wronks_padron_unico');
+	//$db = new MysqliDb('localhost', 'wronks_edgar', 'edgar', 'wronks_padron_test');
+	//$db = new MysqliDb('poseidon', 'beneficiarios01', 'bEn377c98', 'beneficiarios01');
+    
+    /* Comprueba la conexión */
+    if (mysqli_connect_errno()) {
+        printf("Connect failed: %s\n", mysqli_connect_error());
+        exit();
+    }
+	//str_ireplace remplaza
+	// Scripts para evitar inyección de código
+	foreach( $_REQUEST as $variable => $valor )
+	{ 
+		$_REQUEST [ $variable ] = str_ireplace ( "'" , "" , $_REQUEST [ $variable ]); 
+		$_REQUEST [ $variable ] = str_ireplace ( '"' , "" , $_REQUEST [ $variable ]); 
+		$_REQUEST [ $variable ] = str_ireplace ( "SELECT" , "" , $_REQUEST [ $variable ]); 
+		$_REQUEST [ $variable ] = str_ireplace ( "INSERT" , "" , $_REQUEST [ $variable ]); 
+		$_REQUEST [ $variable ] = str_ireplace ( "UPDATE" , "" , $_REQUEST [ $variable ]); 
+		$_REQUEST [ $variable ] = str_ireplace ( "DELETE" , "" , $_REQUEST [ $variable ]); 
+		$_REQUEST [ $variable ] = str_ireplace ( "CREATE" , "" , $_REQUEST [ $variable ]); 
+		$_REQUEST [ $variable ] = str_ireplace ( "TRUNCATE" , "" , $_REQUEST [ $variable ]); 
+		$_REQUEST [ $variable ] = str_ireplace ( "DROP" , "" , $_REQUEST [ $variable ]); 
+		$_REQUEST [ $variable ] = str_ireplace ( "FROM" , "" , $_REQUEST [ $variable ]); 
+		$_REQUEST [ $variable ] = str_ireplace ( "SHOW" , "" , $_REQUEST [ $variable ]); 
+		$_REQUEST [ $variable ] = str_ireplace ( "TABLES" , "" , $_REQUEST [ $variable ]); 
+		$_REQUEST [ $variable ] = str_ireplace ( "TABLE" , "" , $_REQUEST [ $variable ]); 
+		$_REQUEST [ $variable ] = str_ireplace ( "WHERE" , "" , $_REQUEST [ $variable ]); 
+		$_REQUEST [ $variable ] = str_ireplace ( "LIKE" , "" , $_REQUEST [ $variable ]); 
+	} 
+	
+	// Fin de scripts para evitar inyección de código
+?>

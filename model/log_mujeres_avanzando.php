@@ -11,6 +11,7 @@ class logMujeresAvanzando extends MysqliDb{
 
     public function __construct(){}
     
+
     /**
      * Ejecutamos sentencia sql con parámetros
      * @param string $sql Sentencia SQL
@@ -221,36 +222,7 @@ class logMujeresAvanzando extends MysqliDb{
 
         $result = $result[0];
         return $result;
-    }
-    public function reporte ($fecha_creacion = null){
-     
-        $sql = 'SELECT 
-                c.id,
-                c.descripcion as caravana,
-                c.fecha_instalacion,
-                (SELECT COUNT(id_grado) from mujeres_avanzando WHERE id_grado = 1 and id_caravana = m.id_caravana ) as severa,
-                 (SELECT COUNT(id_grado) from mujeres_avanzando WHERE id_grado = 2 and id_caravana = m.id_caravana ) as moderada,
-                  (SELECT COUNT(id_grado) from mujeres_avanzando WHERE id_grado = 3 and id_caravana = m.id_caravana ) as leve,
-                   (SELECT COUNT(id_grado) from mujeres_avanzando WHERE id_grado = 4 and id_caravana = m.id_caravana ) as segura,
-                    (SELECT COUNT(id_caravana) from mujeres_avanzando where id_caravana = m.id_caravana) as total
-                   
-                FROM `log_mujeres_avanzando` l
-                LEFT JOIN mujeres_avanzando m on l.folio = m.folio
-                LEFT JOIN caravana c on m.id_caravana = c.id
-                where ?';
-                
-                $params = array(1);
-                
-                 //Verificamos si se quieren filtrar por caravana
-        if($fecha_creacion !== NULL){
-            $sql .= ' and c.fecha_instalacion = ?';
-            $params[] = $fecha_creacion;
-        }
-        
-          //Ordenamos por caravana
-        $sql .= ' GROUP BY c.id ';
-        
-        return self::executar($sql,$params);
+    }    
 
-    }
-}?>
+}
+?> 

@@ -33,8 +33,8 @@ if(!isset($_SESSION["login"]) || (isset($_SESSION['LAST_ACTIVITY']) && $tiempo >
     //echo  'No logueado';
     //exit;
 }
-$_SESSION['LAST_ACTIVITY'] = time(); 
 
+$_SESSION['LAST_ACTIVITY'] = time(); 
 
 //Actualizamos la hoja de estilo del módulo
 Permiso::updateModule();
@@ -52,12 +52,6 @@ basename($_SERVER['PHP_SELF']) !=  'clave_usuario.php'){
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>DIF - Sistema de Mujeres Avanzando</title>
-
-<?php
-//echo time().'<br>'; 
-//echo $_SESSION['LAST_ACTIVITY'].'<br>';
-//echo $tiempo;
-?>
 <link href="../../css/benefits.css" rel="stylesheet" type="text/css" />
  
     <meta charset="UTF-8"/>
@@ -103,13 +97,9 @@ basename($_SERVER['PHP_SELF']) !=  'clave_usuario.php'){
             <li><a href="<?php echo $_SESSION['module_path'];?>ini/index.php">Inicio Subm&oacute;dulos</a></li>                
             <?php } ?>
             
-            </ul>
-            <div id="bloque_usuario">Bienvenido <?php  echo $_SESSION['nombres'];?></div>
-            
-        </div>
-        
-                
-    
+          </ul>
+          <div id="bloque_usuario">Bienvenido <?php  echo $_SESSION['nombres'];?></div>            
+      </div>                          
   </div>
  
    <div id="precontenido">   

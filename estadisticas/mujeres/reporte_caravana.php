@@ -59,6 +59,7 @@ $(function() {
     </thead>
 
     <tbody>
+    
     <?php foreach ($lista as $c):?>
         <tr>
             <td><?php echo ($excel == 1)? utf8_decode($c['caravana']) : $c['caravana']; ?></td>
@@ -92,7 +93,6 @@ $(function() {
                 <input type="text" id="fecha_creacion" class="fecha" name="fecha_creacion"/>
             </td>
         </tr>
-
         <tr>
             <td>&nbsp;</td>
             <td><input type="submit" value ="Filtrar"/></td>
@@ -106,13 +106,12 @@ $(function() {
         <input type="submit" value ="Generar Excel"/>
     </div>        
     </form> 
+    
+    </div>
  </div>
- </div>
-
 </div>
  
 <?php 
-
     //Incluimos pie
     include($_SESSION['inc_path'].'/footer.php');
 }

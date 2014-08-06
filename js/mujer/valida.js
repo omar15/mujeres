@@ -85,9 +85,9 @@ jQuery.validator.addMethod("exactlength", function(value, element, param) {
 $("#formBen").validate({
 
     rules: {  
-            nombres: {required: true, minlength: 2, maxlength: 40},
-            paterno: {required: true, minlength: 2, maxlength: 40},
-            materno: {required: false, minlength: 2, maxlength: 40},
+            nombres: {required: true, maxlength: 40},
+            paterno: {required: true, maxlength: 40},
+            materno: {required: false, maxlength: 40},
             escolaridad:{required: true, minlength: 2},
             ocupacion:{required: true, minlength: 2},
             fecha_nacimiento: 'required',

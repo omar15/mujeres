@@ -200,13 +200,13 @@ $disabled = ' disabled = "disabled" ';
             <input type="hidden" name="id_aspirante" value="<?php echo $id_aspirante; ?>" />
             <input type="hidden" name="id_edicion_exp" value="<?php echo $id_edicion_exp; ?>" />
             <input type="hidden" name="es_curp_generada" value="<?php echo ($mujeres_avanzando['es_curp_generada'] == NULL)?'NO':$mujeres_avanzando['es_curp_generada']; ?>" />   
-            <input type = 'text' id = 'nombres' name = 'nombres' class="nombre arma_curp_ cambia_mujer" value="<?php echo $mujeres_avanzando['nombres']; ?>" />
+            <input type = 'text' id = 'nombres' name = 'nombres' class="nombre_ arma_curp_ cambia_mujer" value="<?php echo $mujeres_avanzando['nombres']; ?>" />
         </td>
         <td>
-            <input type = 'text' id = 'paterno' name = 'paterno' class="nombre arma_curp_ cambia_mujer" value="<?php echo $mujeres_avanzando['paterno']; ?>" />
+            <input type = 'text' id = 'paterno' name = 'paterno' class="nombre_ arma_curp_ cambia_mujer" value="<?php echo $mujeres_avanzando['paterno']; ?>" />
         </td>
         <td>
-            <input type = 'text' id = 'materno' name = 'materno' class="nombre arma_curp_ cambia_mujer" value="<?php echo $mujeres_avanzando['materno']; ?>" />
+            <input type = 'text' id = 'materno' name = 'materno' class="nombre_ arma_curp_ cambia_mujer" value="<?php echo $mujeres_avanzando['materno']; ?>" />
         </td>
     </tr>
      <tr>

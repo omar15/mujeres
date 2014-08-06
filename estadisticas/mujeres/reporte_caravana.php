@@ -2,7 +2,8 @@
 session_start();//Habilitamos uso de variables de sesión
 
 //Si requerimos obtener totales por fecha
-$fecha_creacion = ($_GET['fecha_creacion'] != NULL)? $_GET['fecha_creacion']: NULL;
+$fecha_creacion_ini = ($_GET['fecha_creacion_ini'] != NULL)? $_GET['fecha_creacion_ini']: NULL;
+$fecha_creacion_fin = ($_GET['fecha_creacion_fin'] != NULL)? $_GET['fecha_creacion_fin']: NULL;
 $excel = ($_POST['excel'] != NULL)? $_POST['excel']: NULL;
 
 //Imprimimos o no cabecera de excel
@@ -23,12 +24,13 @@ if($excel != NULL){
 include_once($_SESSION['model_path'].'mujeres_avanzando.php');
 
 //Obtenemos totales por caravana
-$lista = mujeresAvanzando::repCarGrado($fecha_creacion);
-$tot_car = mujeresAvanzando::totalRepCarGrado($fecha_creacion);
+$lista = mujeresAvanzando::repCarGrado($fecha_creacion_ini,$fecha_creacion_fin);
+$tot_car = mujeresAvanzando::totalRepCarGrado($fecha_creacion_ini,$fecha_creacion_fin);
 
 if($excel == NULL){ ?>
 
 <script lang="JavaScript" type="text/javascript" src="<?php echo $_SESSION['js_path']?>combobox.js"></script>
+<script lang="JavaScript" type="text/javascript" src="<?php echo $_SESSION['js_path']?>fecha.js"></script>
 <script lang="JavaScript" type="text/javascript" src="<?php echo $_SESSION['js_path']?><?php echo $_SESSION['module_name']?>/valida.js"></script>
 <script lang="javascript" type="text/javascript" src="<?php echo $_SESSION['js_path'];?>jquery.tablesorter.min.js"></script>
 <script type="text/javascript">
@@ -46,6 +48,15 @@ $(function() {
     
     <div class="centro">              
     <div>   
+
+    <?php if($excel == NULL){ ?>
+    <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>" >
+    <div>
+        <input type="hidden" id="excel" name="excel" value="1" />
+        <input type="submit" value ="Generar Excel"/>
+    </div>        
+    </form> 
+    <?php } ?>
 
     <table id="totales_caravana" class="tablesorter">
     <thead>
@@ -88,25 +99,23 @@ $(function() {
     <form method="GET" action="<?php echo $_SERVER['PHP_SELF']; ?>" >
         <table>
         <tr>
-            <th>Fecha Creaci&oacute;n</th>
-            <td>
-                <input type="text" id="fecha_creacion" class="fecha" name="fecha_creacion"/>
-            </td>
+            <th>Consultar desde Fecha Creaci&oacute;n</th>            
         </tr>
         <tr>
+            <td>
+                <label>Desde</label> 
+                <input type="text" id="from" name="fecha_creacion_ini" value="<?php echo $fecha_creacion_ini; ?>" />
+            </td>
+            <td>
+                <label>Hasta</label> 
+                <input type="text" id="to" name="fecha_creacion_fin" value="<?php echo $fecha_creacion_fin; ?>" />
+            </td>
             <td>&nbsp;</td>
             <td><input type="submit" value ="Filtrar"/></td>
         </tr>
         </table>
-    </form> 
+    </form>     
 
-    <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>" >
-    <div>
-        <input type="hidden" id="excel" name="excel" value="1" />
-        <input type="submit" value ="Generar Excel"/>
-    </div>        
-    </form> 
-    
     </div>
  </div>
 </div>
